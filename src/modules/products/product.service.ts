@@ -24,7 +24,7 @@ export class ProductService {
     const products = await this.productModel.find();
 
     for (let p of products) {
-      const name = this.translateService.getTransLate(language, p.name);
+      const name = await this.translateService.getTransLate(language, p.name);
 
       res.push({ ...p.toObject(), name });
     }
@@ -42,12 +42,10 @@ export class ProductService {
       throw new ConflictException('This Product already exists');
     }
 
- 
-
     if (!isValidObjectId(payload.category_id)) {
       throw new BadRequestException('Id is not valid');
     }
-   
+
     const products = await this.productModel.create({
       name: payload.name,
       price: payload.price,
