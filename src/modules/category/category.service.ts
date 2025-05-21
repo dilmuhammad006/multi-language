@@ -9,6 +9,7 @@ import { isValidObjectId, Model } from 'mongoose';
 import { TranslateService } from '../translate';
 import { CreateCategoryDto } from './dtos';
 import { Category } from './models';
+import { UpdateDto } from '../products';
 
 @Injectable()
 export class CategoryService {
@@ -61,7 +62,7 @@ export class CategoryService {
     };
   }
 
-  async update(id: string, name: string) {
+  async update(id: string, name: UpdateDto) {
     if (!isValidObjectId(id)) {
       throw new BadRequestException('Id is not valid');
     }
@@ -74,7 +75,7 @@ export class CategoryService {
 
     const category = await this.categoryModel.findByIdAndUpdate(
       { id },
-      { name: name },
+      { name: name.name },
     );
 
     return {

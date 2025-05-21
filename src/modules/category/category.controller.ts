@@ -11,6 +11,7 @@ import {
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dtos';
 import { ApiHeader } from '@nestjs/swagger';
+import { UpdateDto } from '../products';
 
 @Controller('categories')
 export class CategoryController {
@@ -39,7 +40,7 @@ export class CategoryController {
   }
 
   @Put(':id')
-  async update(@Body() name: string, @Param() id: string) {
+  async update(@Body() name: UpdateDto, @Param() id: string) {
     return this.service.update(id, name);
   }
 }

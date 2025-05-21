@@ -1,0 +1,16 @@
+.dockerignore
+
+node_modules/
+compose.yaml
+
+.env
+.env*
+
+dist/
+
+uploads/
+test/
+.git/
+.gitignore
+
+pnpm-lock.yaml
